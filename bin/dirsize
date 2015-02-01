@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This command outputs the specified folders subdirectories sizes sorted by size ascendingly
+# This command outputs the specified folder's subdirectories' sizes sorted ascendingly
 
 if [ "$#" -gt 1 ]
 then
