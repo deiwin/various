@@ -1,10 +1,10 @@
 #!/bin/sh
-
 # This command outputs the specified folder's subdirectories' sizes sorted ascendingly
+set -e
 
 if [ "$#" -gt 1 ]
 then
-  echo "Usage: dirsize [folder]"
+  echo "Usage: $0 [folder]"
   exit 1
 fi
 

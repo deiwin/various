@@ -1,11 +1,10 @@
 #!/bin/bash
-set -e
-
 # This script will focus the specified window, then type the specified text into the window. Unlike a simple `xdotool type`, 
 # however, this script will also preserve the case of the input text. To do this, it prepends 'shift+' to the upper case
 # letters in the text and sends the specified combination.
 #
 # Use `xdotool selectwindow` to find the window ID
+set -e
 
 if [ "$#" -ne 2 ]
 then

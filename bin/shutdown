@@ -1,12 +1,9 @@
 #!/bin/bash
-#
-# a simple logout script which gracefully
-# closes all apps before executing
-#
-###
+# A simple logout script which gracefully closes all apps before executing
+set -e
 
 message() {
-  echo "usage: leave [option]"
+  echo "usage: $0 [option]"
   echo
   echo "  options:"
   echo "        -e       logout / kill X"
@@ -33,24 +30,10 @@ if [ -z "$DISPLAY" ]; then
   exit 0
 fi
 
-# are you sure?
-#if zenity --question \
-#          --title=$LABEL \
-#          --ok-label=$LABEL \
-#          --text="are you sure you want to $LABEL?"; then
+# gracefully close all apps
+pkill mono
+i3-msg [class=".*"] kill
 
-  # gracefully close all apps
-  pkill mono
-  i3-msg [class=".*"] kill
-  #wmctrl -l | awk '{print $1}' | while read APP; do
-  #  wmctrl -i -c $APP || echo "$APP not killed"
-  #done
-
-  # do it
-  $ACTION &
-
-  exit 0
-#fi
-
-# if we're still here, fail
-exit 1
+# do it
+$ACTION &
+exit 0
