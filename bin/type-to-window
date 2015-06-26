@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+# This script will focus the specified window, then type the specified text into the window. Unlike a simple `xdotool type`, 
+# however, this script will also preserve the case of the input text. To do this, it prepends 'shift+' to the upper case
+# letters in the text and sends the specified combination.
+#
+# Use `xdotool selectwindow` to find the window ID
+
+if [ "$#" -ne 2 ]
+then
+  echo "Usage: $0 window_id text"
+  exit 1
+fi
+
+WINDOW=$1
+TEXT=$2
+
+for (( i=0; i<${#TEXT}; i++ ))
+do
+  key=`echo ${TEXT:$i:1} | sed -e "s/\([A-Z]\)/shift+\1/g"`
+  echo key '--window' $WINDOW $key
+done | xargs xdotool windowfocus $WINDOW
+
