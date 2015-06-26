@@ -1,6 +1,7 @@
 *
 !/.gitignore.d
 !/.gitignore.d/various
+!/README.md
 !/bin
 !/bin/dirsize
 !/bin/shutdown
